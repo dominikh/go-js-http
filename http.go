@@ -10,13 +10,16 @@ import (
 	"net/textproto"
 	"net/url"
 	"strings"
+	"time"
 
 	"github.com/gopherjs/gopherjs/js"
 
 	"honnef.co/go/js/xhr"
 )
 
-type Client struct{}
+type Client struct {
+	Timeout time.Duration
+}
 
 var DefaultClient = Client{}
 
@@ -24,6 +27,9 @@ func (c *Client) Do(req *http.Request) (*http.Response, error) {
 	var err error
 	x := xhr.NewRequest(req.Method, req.URL.String())
 	x.ResponseType = xhr.ArrayBuffer
+	if c.Timeout > 0 {
+		x.Timeout = int(c.Timeout / time.Millisecond)
+	}
 	for k, v := range req.Header {
 		for _, vv := range v {
 			x.SetRequestHeader(k, vv)
