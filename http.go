@@ -1,3 +1,12 @@
+// Package http is a clone of net/http for GopherJS. It replicates
+// most of the net/http.Client API, using XHR in the background, and
+// making use of actual types from the net/http package, such as
+// net/http.Request and net/http.Response.
+//
+// At this moment, the future of this package is not yet certain.
+// Better solutions might present themselves, in which case this
+// package will be removed and replaced with something better. Use at
+// your own risk.
 package http
 
 import (
@@ -18,6 +27,8 @@ import (
 )
 
 type Client struct {
+	// The amount of time a request can take before it will be
+	// terminated. Millisecond precision is supported.
 	Timeout time.Duration
 }
 
