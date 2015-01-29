@@ -1,0 +1,7 @@
+This is an experimental package, replicating the net/http Client API
+for GopherJS.
+
+The future of this package is not yet certain, a better solution might
+appear, making this package unnecessary. As such, this package (and
+repository) might disappear in the future. Consider it a proof of
+concept.
