@@ -23,6 +23,7 @@ var DefaultClient = Client{}
 func (c *Client) Do(req *http.Request) (*http.Response, error) {
 	var err error
 	x := xhr.NewRequest(req.Method, req.URL.String())
+	x.ResponseType = xhr.ArrayBuffer
 	for k, v := range req.Header {
 		for _, vv := range v {
 			x.SetRequestHeader(k, vv)
